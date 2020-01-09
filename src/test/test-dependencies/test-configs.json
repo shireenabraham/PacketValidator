@@ -1,0 +1,9 @@
+{
+	"configMetaData": [
+		{
+			"rulesCsv": "tst/test-dependencies/1/rules.csv",
+			"ruleEngine": "impl",
+			"results": "tst/test-dependencies/1/resultsJsonFile.json"
+		}
+	]
+}
