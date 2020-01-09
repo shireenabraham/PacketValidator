@@ -83,7 +83,7 @@ public class Firewall {
         return new NetworkPacket(direction, protocol, portRange, ipAddressRange);
 	}
 
-	private Double convertIpToDouble(String ipAddressString) {
+	public Double convertIpToDouble(String ipAddressString) {
 		String[] ipAddressStringParts = ipAddressString.split("\\.");
 
 		return new Double(16777216 * Double.parseDouble(ipAddressStringParts[0]) 

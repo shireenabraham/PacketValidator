@@ -38,6 +38,11 @@ public class Range<T extends Comparable<T>> implements Comparable<Range<T>> {
 		return a.compareTo(c) <= 0 && b.compareTo(c) >= 0 || c.compareTo(a) <= 0 && d.compareTo(a) >= 0;
 	}
 
+	@Override
+	public String toString() {
+		return this.start.toString() + " " + this.end.toString();
+	}
+
 	public Range<T> merge(Range<T> range) {
 		T a = this.start;
 		T b = this.end;

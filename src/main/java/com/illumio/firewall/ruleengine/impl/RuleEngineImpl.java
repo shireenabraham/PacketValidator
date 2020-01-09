@@ -30,13 +30,19 @@ public class RuleEngineImpl implements RuleEngine {
 			
 			Range<Integer> ports = rule.getPortRange();
 			if (allowedPorts.contains(ports)){
-				ports = ports.merge(allowedPorts.ceiling(ports));
+				Range<Integer> removePorts = allowedPorts.ceiling(ports);
+
+				ports = ports.merge(removePorts);
+				allowedPorts.remove(removePorts);
 			}
 			allowedPorts.add(ports);
 			
 			Range<Double> ips = rule.getIpAddressRange();
 			if (allowedIps.contains(ips)){
-				ips = ips.merge(allowedIps.ceiling(ips));
+				Range<Double> removeIps = allowedIps.ceiling(ips);
+
+				ips = ips.merge(removeIps);
+				allowedIps.remove(removeIps);
 			}
 			allowedIps.add(ips);
 		});
