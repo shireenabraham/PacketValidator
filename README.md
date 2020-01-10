@@ -2,7 +2,7 @@
 Application to validate network packets based on given rules
 
 ## Pre-Requisites
-* Java version 9 or higher.
+* Java version 11.
 * Maven.
 
 ## How to run the code
