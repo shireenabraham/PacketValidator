@@ -7,10 +7,11 @@ Application to validate network packets based on given rules
 
 ## How to run the code
 1. **$JAVA_HOME/bin/jshell**
-2. **/env --class-path lib/opencsv-2.4.jar:target/PacketValidator-1.0-SNAPSHOT.jar**
-3. **import com.illumio.firewall.Firewall;**
-4. **Firewall firewall = new Firewall(YOUR_CSV_FILE_PATH);**
-5. **firewall.acceptPacket(DIRECTION_STRING, PROTOCOL_STRING, PORT_STRING, IP_STRING)**
+2. **jshell> /env --class-path lib/opencsv-2.4.jar:target/PacketValidator-1.0-SNAPSHOT.jar**
+3. **jshell> import com.illumio.firewall.Firewall;**
+4. **jshell> Firewall firewall = new Firewall(YOUR_CSV_FILE_PATH);**
+5. **jshell> firewall.acceptPacket(DIRECTION_STRING, PROTOCOL_STRING, PORT_STRING, IP_STRING)**
+Do not include *jshell>* as its a prefix added in the Java shell.
 
 ## Algorithm used to validate packets
 ### Direction and Protocol
@@ -34,7 +35,7 @@ Both of these do not need complex data structures. A HashSet is used to store th
 ## Testing
 
 ### How to execute
-1. **mvn test**
+**mvn test**
 
 ### Testing Framework
 #### Test Config
