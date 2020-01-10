@@ -41,7 +41,7 @@ Both of these do not need complex data structures. A HashSet is used to store th
 #### Test Config
 1. Located at *src/test/test-dependencies/test-config.json*.
 2. Format:
-'''json
+```json
 {
   "configMetaData": {
     "testNo": <TEST_NO>,
@@ -50,4 +50,4 @@ Both of these do not need complex data structures. A HashSet is used to store th
     "testDataFile": <TEST_DATA_FILE_PATH>
   }
 }
-'''
+```
