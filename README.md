@@ -51,3 +51,14 @@ Both of these do not need complex data structures. A HashSet is used to store th
   }
 }
 ```
+
+#### Rules CSV
+1. The rules csv is similar to the ones we provide when we are executing the code.
+2. Format (exclude headers when adding):
+```csv
+direction,protocol,port_range,ip_range
+```
+
+#### Rule Engine (Optional)
+
+Current available rule engines - **Impl**.
