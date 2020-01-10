@@ -9,8 +9,8 @@ Application to validate network packets based on given rules
 1. **$JAVA_HOME/bin/jshell**
 2. **jshell> /env --class-path lib/opencsv-2.4.jar:target/PacketValidator-1.0-SNAPSHOT.jar**
 3. **jshell> import com.illumio.firewall.Firewall;**
-4. **jshell> Firewall firewall = new Firewall(YOUR_CSV_FILE_PATH);**
-5. **jshell> firewall.acceptPacket(DIRECTION_STRING, PROTOCOL_STRING, PORT_STRING, IP_STRING)**
+4. **jshell> Firewall firewall = new Firewall(<YOUR_CSV_FILE_PATH>);**
+5. **jshell> firewall.acceptPacket(<DIRECTION_STRING>, <PROTOCOL_STRING>, <PORT_STRING>, <IP_STRING>)**
 Do not include *jshell>* as its a prefix added in the Java shell.
 
 ## Algorithm used to validate packets
@@ -40,4 +40,14 @@ Both of these do not need complex data structures. A HashSet is used to store th
 ### Testing Framework
 #### Test Config
 1. Located at *src/test/test-dependencies/test-config.json*.
-2. Format of the json:
+2. Format:
+'''json
+{
+  "configMetaData": {
+    "testNo": <TEST_NO>,
+    "rulesCsv": <RULES_CSV_PATH>,
+    "ruleEngine": <RULE_ENGINE>,
+    "testDataFile": <TEST_DATA_FILE_PATH>
+  }
+}
+'''
