@@ -33,6 +33,8 @@ direction -> protocol -> port Ranges -> IP Ranges
 * The ports and IPs are stored in a data structure called *Range*. 
 * This *Range* is used as the key for storing the ports and IPs in the TreeSet.
 * Overlapping ranges are merged as one and stored in the TreeSet.
+* The *Range* is made into a generic class which can accept any data type. 
+* We have overriden *compareTo* and *equals* methods, so that the Tree can use them to sort the Range keys.
 
 ## Testing
 
