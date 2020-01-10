@@ -14,10 +14,16 @@ Application to validate network packets based on given rules
 Do not include *jshell>* as its a prefix added in the Java shell.
 
 ## Algorithm used to validate packets
-A hierarchical tree-like data structure is used to store the rule combinations. The rules follow this order:
+1. A hierarchical tree-like data structure is used to store the rule combinations. The rules follow this order:
 ```code
 direction -> protocol -> port Ranges -> IP Ranges
 ```
+2. Hashmaps are used for both direction and protocol to check whether they exist or not.
+3. TreeMap / TreeSet is used for Ports and IPs respectively.
+  1. The Tree is internally implemented as a Self-balancing red-black binary search tree. 
+  2. The keys of this Tree are another Data structure called *Range* as explained below.
+  3. This data structure is chosen because of its **O(logN)** time complexity for all operations on it.
+  4. A potential alternative solution is to use a HashMap instead of TreeMap / TreeSet. But I chose to not go that way as my planned implementation using HashMap will consume more space even though time will be **O(1)** and we have to override hashCode(), which is a tricky area. This is the trade off decision I made when implementing the algoirithm.
 
 #### Range
 1. The ports and IPs are stored in a data structure called *Range*. 
