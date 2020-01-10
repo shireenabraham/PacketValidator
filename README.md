@@ -107,5 +107,4 @@ outbound,tcp,23,34.54.67.89,true
 ```
 
 # Interested Team
-* The first team I would love to work in is the Policy team. The kind of work done by the team seems truly challenging. I think this would be a great place for me to learn how to design efficient and scalable systems.
-* The second team would be the Data team. I loved the Data Mining and Data Visualization courses I have taken in graduate school. I believe that the knowledge I gained while learning these courses will be useful while working for the Data team.
+I am interested in the Policy and the Platform team. It aligns with my interest of working on solving problems at scale. I have prior experience in this domain. I am also interested to work with service oriented architecture. My first priority would be Policy team and second would be Priority team.
