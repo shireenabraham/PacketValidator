@@ -28,6 +28,10 @@ public class RuleEngineImpl implements RuleEngine {
 			allowedDirections.add(rule.getDirection());
 			allowedProtocols.add(rule.getProtocol());
 			
+			/** 
+			* We combine overlapping ranges for both parts and IPs. 
+			* The resulting range should be the widest range. 
+			*/
 			Range<Integer> ports = rule.getPortRange();
 			if (allowedPorts.contains(ports)){
 				Range<Integer> removePorts = allowedPorts.ceiling(ports);

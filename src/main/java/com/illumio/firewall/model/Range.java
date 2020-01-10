@@ -8,6 +8,11 @@ import java.lang.Comparable;
 public class Range<T extends Comparable<T>> implements Comparable<Range<T>> {
 	private T start, end;
 
+	/**
+	* Ranges which do not overlap are not equal
+	* The range having the smaller numbers come before. i.e. 
+	* Used to store the elements in Red Black tree (TreeSet).
+	*/
 	@Override
 	public int compareTo(Range<T> range) {
 		T a = this.start;
@@ -26,6 +31,9 @@ public class Range<T extends Comparable<T>> implements Comparable<Range<T>> {
 		}
 	}
 
+	/**
+	* Equals is used for contains() in TreeSet.
+	*/
 	@Override
 	public boolean equals(Object rangeObj) {
 		Range<T> range = (Range<T>) rangeObj;
@@ -43,6 +51,9 @@ public class Range<T extends Comparable<T>> implements Comparable<Range<T>> {
 		return this.start.toString() + " " + this.end.toString();
 	}
 
+	/**
+	* We merge two ranges to give us a range which is inclusive of both the ranges.
+	*/
 	public Range<T> merge(Range<T> range) {
 		T a = this.start;
 		T b = this.end;
