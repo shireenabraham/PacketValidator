@@ -23,7 +23,11 @@ direction -> protocol -> port Ranges -> IP Ranges
   1. The Tree is internally implemented as a Self-balancing red-black binary search tree. 
   2. The keys of this Tree are another Data structure called *Range* as explained below.
   3. This data structure is chosen because of its **O(logN)** time complexity for all operations on it.
-  4. A potential alternative solution is to use a HashMap instead of TreeMap / TreeSet. But I chose to not go that way as my planned implementation using HashMap will consume more space even though time will be **O(1)** and we have to override hashCode(), which is a tricky area. This is the trade off decision I made when implementing the algoirithm.
+  4. A potential alternative solution is to use a HashMap instead of TreeMap / TreeSet. But I chose to not go that way because: 
+    1. As my planned implementation using HashMap will consume more space even though time will be **O(1)**
+    2. We have to override hashCode(), which is a tricky area. 
+    3. Using Tree would be a more cleaner and intuitive implementation than Hashmap as the keys (Range) will be in sorted order.
+    4. This is the trade off decision I made when implementing the algoirithm.
 
 #### Range
 1. The ports and IPs are stored in a data structure called *Range*. 
