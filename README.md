@@ -22,10 +22,10 @@ Both of these do not need complex data structures. A HashSet is used to store th
 2. This is chosen as a TreeSet is internally a self balancing Red-Black tree. 
 3. The below data structure is used as a key to store in the TreeSet. 
 4. The time complexity of operations using a TreeSet - **O(logN)**.
-5. The alternative is to override **hashcode()** and use a HashMap. I chose the trade off because: 
-  5.1. The time complexity in this case would be reduced to **O(1)**, but the space would be an extra **O(N)**. We might need to store a lot of data.
-  5.2. Implementing your own Hashcode can be tricky. The HashMap will not work as expected if not implemented properly.
-  5.3. Using a TreeSet is more cleaner to understand than a HashMap.
+5. The alternative is to override **hashcode()** and use a HashMap. I chose the trade off because 
+    5.1. The time complexity in this case would be reduced to **O(1)**, but the space would be an extra **O(N)**. We might need to store a lot of data.
+    5.2. Implementing your own Hashcode can be tricky. The HashMap will not work as expected if not implemented properly.
+    5.3. Using a TreeSet is more cleaner to understand than a HashMap.
 
 #### Range
 1. The ports and IPs are stored in a data structure called *Range*. 
@@ -81,4 +81,8 @@ inbound,tcp,80,192.168.1.2,true
 outbound,tcp,10002,192.168.10.11,true
 inbound,udp,52,192.168.1.1,false
 ```
+
+# For the Reviewer
+
+# Interested Team
 I am interested in working in the Platform Team and the Data Team. 
