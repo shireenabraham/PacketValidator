@@ -1,1 +1,6 @@
+inbound,tcp,80,192.168.1.2,true
+outbound,tcp,10002,192.168.10.11,true
+inbound,udp,52,192.168.1.1,false
 inbound,udp,53,192.168.1.255,true
+outbound,tcp,10535,192.168.10.11,true
+outbound,tcp,12345,192.168.10.10,false
