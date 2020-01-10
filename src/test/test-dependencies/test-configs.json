@@ -1,9 +1,10 @@
 {
 	"configMetaData": [
 		{
-			"rulesCsv": "tst/test-dependencies/1/rules.csv",
+			"testNo": 1,
+			"rulesCsv": "src/test/test-dependencies/1/rules.csv",
 			"ruleEngine": "impl",
-			"results": "tst/test-dependencies/1/resultsJsonFile.json"
+			"testDataFile": "src/test/test-dependencies/1/data.csv"
 		}
 	]
 }
