@@ -6,41 +6,46 @@ import com.illumio.firewall.model.Range;
 import com.illumio.firewall.ruleengine.RuleEngine;
 import com.illumio.firewall.model.NetworkPacket;
 
-import java.util.HashSet;
+import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.List;
 
 public class RuleEngineImpl implements RuleEngine {
-	private HashSet<PacketDirection> allowedDirections = new HashSet<>();
-	private HashSet<Protocol> allowedProtocols = new HashSet<>();
-	
-	/** 
-	* Decision to choose between HashMap and TreeSet.
-	* HashMap -> Occupies more space but Time complexity is O(1).
-	* TreeSet -> Much efficient on Space but time complexity is O(logn)
-	* TreeSet is chosen as we might we encountering large sets of data, but not too much to make logn time complexity hinder performance.
-	*/
-	private TreeSet<Range<Integer>> allowedPorts = new TreeSet<>();
-	private TreeSet<Range<Double>> allowedIps = new TreeSet<>();
+	private HashMap<PacketDirection, HashMap<Protocol, TreeMap<Range<Integer>, TreeSet<Range<Double>>>>> allowedPackets = new HashMap<>();
 
 	public void updateRules(List<NetworkPacket> networkPacketRules) {
 		networkPacketRules.forEach(rule -> {
-			allowedDirections.add(rule.getDirection());
-			allowedProtocols.add(rule.getProtocol());
-			
-			/** 
-			* We combine overlapping ranges for both parts and IPs. 
-			* The resulting range should be the widest range. 
+			/*
+			* Add direction
 			*/
-			Range<Integer> ports = rule.getPortRange();
-			if (allowedPorts.contains(ports)){
-				Range<Integer> removePorts = allowedPorts.ceiling(ports);
-
-				ports = ports.merge(removePorts);
-				allowedPorts.remove(removePorts);
-			}
-			allowedPorts.add(ports);
+			allowedPackets.putIfAbsent(rule.getDirection(), new HashMap<>());
 			
+			/*
+			* Add protocol
+			*/
+			HashMap<Protocol, TreeMap<Range<Integer>, TreeSet<Range<Double>>>> allowedProtocols = allowedPackets.get(rule.getDirection());
+			allowedProtocols.putIfAbsent(rule.getProtocol(), new TreeMap<>());
+
+			/*
+			* Add the ports
+			*/
+			TreeSet<Range<Double>> allowedIps = new TreeSet<>();
+
+			TreeMap<Range<Integer>, TreeSet<Range<Double>>> allowedPorts = allowedProtocols.get(rule.getProtocol());
+			Range<Integer> ports = rule.getPortRange();
+
+			if (allowedPorts.containsKey(ports)){
+				Range<Integer> removePorts = allowedPorts.ceilingKey(ports);
+
+				allowedIps = allowedPorts.remove(removePorts);
+				ports = ports.merge(removePorts);
+			}
+			allowedPorts.put(ports, allowedIps);
+
+			/*
+			* Add the Ips
+			*/
 			Range<Double> ips = rule.getIpAddressRange();
 			if (allowedIps.contains(ips)){
 				Range<Double> removeIps = allowedIps.ceiling(ips);
@@ -53,9 +58,35 @@ public class RuleEngineImpl implements RuleEngine {
 	}
 
 	public boolean evaluatePacket(NetworkPacket packet){
-		return allowedDirections.contains(packet.getDirection())
-				&& allowedProtocols.contains(packet.getProtocol())
-				&& allowedPorts.contains(packet.getPortRange())
-				&& allowedIps.contains(packet.getIpAddressRange());
+		
+		/*
+		* Contains the direction
+		*/
+		if (!allowedPackets.containsKey(packet.getDirection())) {
+			return false;
+		}
+
+		/*
+		* Contains the protocol
+		*/
+		if (!allowedPackets.get(packet.getDirection()).containsKey(packet.getProtocol())) {
+			return false;
+		}
+
+		/*
+		* port in range?
+		*/
+		if (!allowedPackets.get(packet.getDirection()).get(packet.getProtocol()).containsKey(packet.getPortRange())) {
+			return false;
+		}
+
+		/*
+		* IP in range?
+		*/
+		if (!allowedPackets.get(packet.getDirection()).get(packet.getProtocol()).get(packet.getPortRange()).contains(packet.getIpAddressRange())) {
+			return false;
+		}
+
+		return true;
 	}
 }
