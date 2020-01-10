@@ -5,6 +5,12 @@
 			"rulesCsv": "src/test/test-dependencies/1/rules.csv",
 			"ruleEngine": "impl",
 			"testDataFile": "src/test/test-dependencies/1/data.csv"
+		},
+		{
+			"testNo": 2,
+			"rulesCsv": "src/test/test-dependencies/2/rules.csv",
+			"ruleEngine": "impl",
+			"testDataFile": "src/test/test-dependencies/2/data.csv"
 		}
 	]
 }
