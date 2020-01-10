@@ -85,4 +85,5 @@ inbound,udp,52,192.168.1.1,false
 # For the Reviewer
 
 # Interested Team
-I am interested in working in the Platform Team and the Data Team. 
+The first team I would love to work in is the Policy team. The kind of work done by the team seems truly challenging. I think this would be a great place for me to learn how to design efficient and scalable systems.
+The second team would be the Data team. I loved the Data Mining and Data Visualization courses I have taken in graduate school. I believe that the knowledge I gained while learning these courses will be useful while working for the Data team.
