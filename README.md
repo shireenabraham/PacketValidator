@@ -58,7 +58,26 @@ Both of these do not need complex data structures. A HashSet is used to store th
 ```csv
 direction,protocol,port_range,ip_range
 ```
+3. Example:
+```csv
+inbound,tcp,80,192.168.1.2
+outbound,tcp,10000-20000,192.168.10.11
+inbound,udp,53,192.168.1.1-192.168.2.5
+outbound,udp,1000-2000,52.12.48.92
+```
 
 #### Rule Engine (Optional)
 
 Current available rule engines - **Impl**.
+
+#### Test Data
+1. The format is similar to the rules csv. We have to add the expected result as well
+```csv
+direction,protocol,port_range,ip_range,expected_result
+```
+2. Example:
+```csv
+inbound,tcp,80,192.168.1.2,true
+outbound,tcp,10002,192.168.10.11,true
+inbound,udp,52,192.168.1.1,false
+```
