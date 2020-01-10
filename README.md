@@ -55,6 +55,25 @@ direction -> protocol -> port Ranges -> IP Ranges
   }
 }
 ```
+* Example:
+```json
+{
+	"configMetaData": [
+		{
+			"testNo": 1,
+			"rulesCsv": "src/test/test-dependencies/1/rules.csv",
+			"ruleEngine": "impl",
+			"testDataFile": "src/test/test-dependencies/1/data.csv"
+		},
+		{
+			"testNo": 2,
+			"rulesCsv": "src/test/test-dependencies/2/rules.csv",
+			"ruleEngine": "impl",
+			"testDataFile": "src/test/test-dependencies/2/data.csv"
+		}
+	]
+}
+```
 
 #### Rules CSV
 * The rules csv is similar to the ones we provide when we are executing the code.
@@ -65,9 +84,7 @@ direction,protocol,port_range,ip_range
 * Example:
 ```csv
 inbound,tcp,80,192.168.1.2
-outbound,tcp,10000-20000,192.168.10.11
-inbound,udp,53,192.168.1.1-192.168.2.5
-outbound,udp,1000-2000,52.12.48.92
+outbound,tcp,23,34.54.67.89
 ```
 
 #### Rule Engine (Optional)
@@ -82,11 +99,12 @@ direction,protocol,port_range,ip_range,expected_result
 * Example:
 ```csv
 inbound,tcp,80,192.168.1.2,true
-outbound,tcp,10002,192.168.10.11,true
-inbound,udp,52,192.168.1.1,false
+outbound,tcp,80,192.168.1.2,false
+inbound,udp,80,192.168.1.2,false
+inbound,tcp,81,192.168.1.2,false
+inbound,tcp,80,192.168.1.3,false
+outbound,tcp,23,34.54.67.89,true
 ```
-
-# For the Reviewer
 
 # Interested Team
 * The first team I would love to work in is the Policy team. The kind of work done by the team seems truly challenging. I think this would be a great place for me to learn how to design efficient and scalable systems.
